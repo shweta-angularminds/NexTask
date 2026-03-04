@@ -14,6 +14,7 @@ interface AuthContextType {
     setUser:React.Dispatch<React.SetStateAction<User | null >>;
     loading:boolean;
     fetchProfile:()=>Promise<void>;
+    logout:()=>void;
 }
 
 const AuthContext = createContext<AuthContextType |undefined>(undefined)
@@ -39,6 +40,11 @@ export const AuthProvider = ({ children }:AuthProviderProps) => {
     }
   };
 
+  const logout = () =>{
+    localStorageService.removeToken()
+    setUser(null)
+  }
+
   useEffect(() => {
     const token = localStorageService.getToken();
 
@@ -49,7 +55,7 @@ export const AuthProvider = ({ children }:AuthProviderProps) => {
     }
   }, []);
   return (
-    <AuthContext.Provider value={{ user, setUser, loading, fetchProfile }}>
+    <AuthContext.Provider value={{ user, setUser, loading, fetchProfile,logout }}>
       {children}
     </AuthContext.Provider>
   );
