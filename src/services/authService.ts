@@ -1,6 +1,6 @@
 import axios from "axios";
 import type { LoginFormValues, signupFormValues } from "@/schemas/authSchema";
-import localStorageService from "./localStorageService";
+import api from "@/lib/axios";
 
 export const signUpService = async (data: signupFormValues) => {
   const response = await axios.post("http://localhost:8000/auth/register", {
@@ -20,3 +20,8 @@ export const loginService = async(data:LoginFormValues)=>{
   return response.data
 }
 
+
+export const getProfile = async()=>{
+  const response = await api.get("/auth/profile")
+  return response.data
+}

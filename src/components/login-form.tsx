@@ -15,6 +15,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { loginService } from "@/services/authService";
 import { toast } from "sonner";
 import localStorageService from "@/services/localStorageService";
+import { useAuth } from "@/context/AuthContext";
 
 export function LoginForm({
   className,
@@ -22,7 +23,7 @@ export function LoginForm({
 }: React.ComponentProps<"form">) {
 
   const navigate = useNavigate()
-
+  const {fetchProfile} = useAuth()
   const {
     register,
     handleSubmit,
@@ -38,7 +39,7 @@ export function LoginForm({
       localStorageService.setToken(res.access_token)
 
       toast.success("Login successful 🎉");
-
+      await fetchProfile()
       navigate("/dashboard",{replace:true})
 
 
