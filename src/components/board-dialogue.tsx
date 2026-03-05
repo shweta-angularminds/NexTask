@@ -58,7 +58,7 @@ function BoardDialogue({
             </DialogDescription>
           </DialogHeader>
           <FieldGroup>
-            <Field>
+            <Field className="py-2">
               <Label htmlFor="title">Board Name</Label>
               <Input
                 id="title"
@@ -73,7 +73,7 @@ function BoardDialogue({
               )}
             </Field>
           </FieldGroup>
-          <DialogFooter>
+          <DialogFooter className="py-2">
             <DialogClose asChild>
               <Button variant="outline">Cancel</Button>
             </DialogClose>

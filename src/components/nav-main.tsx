@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/sidebar"
 import BoardDialogue from "./board-dialogue"
 import { useState } from "react"
+import { Link } from "react-router-dom"
 
 export function NavMain({
   items,
@@ -32,14 +33,14 @@ export function NavMain({
             <SidebarMenuItem className="flex items-center gap-2">
               <SidebarMenuButton
                 tooltip="Quick Create"
-                onClick={()=>setOpen(true)}
+                onClick={() => setOpen(true)}
                 className="bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground active:bg-primary/90 active:text-primary-foreground min-w-8 duration-200 ease-linear"
               >
                 <IconCirclePlusFilled />
                 <span>Quick Create</span>
               </SidebarMenuButton>
 
-              <BoardDialogue open={open} setOpen={setOpen}/>
+              <BoardDialogue open={open} setOpen={setOpen} />
 
               <Button
                 size="icon"
@@ -54,10 +55,12 @@ export function NavMain({
           <SidebarMenu>
             {items.map((item) => (
               <SidebarMenuItem key={item.title}>
-                <SidebarMenuButton tooltip={item.title}>
-                  {item.icon && <item.icon />}
-                  <span>{item.title}</span>
-                </SidebarMenuButton>
+                <Link to={item.url}>
+                  <SidebarMenuButton tooltip={item.title}>
+                    {item.icon && <item.icon />}
+                    <span>{item.title}</span>
+                  </SidebarMenuButton>
+                </Link>
               </SidebarMenuItem>
             ))}
           </SidebarMenu>

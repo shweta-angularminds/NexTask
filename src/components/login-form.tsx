@@ -40,7 +40,7 @@ export function LoginForm({
 
       toast.success("Login successful 🎉");
       await fetchProfile()
-      navigate("/dashboard",{replace:true})
+      navigate("/boards",{replace:true})
 
 
     } catch (error:any) {

@@ -7,6 +7,7 @@ import SignupPage from "./app/signup/page";
 import { Toaster } from "sonner";
 import ProtectedRoute from "./components/ProtectedRoute";
 import PublicRoute from "./components/PublicRoute";
+import BoardsPage from "./app/Boards/BoardsPage";
 
 function App() {
   return (
@@ -31,6 +32,8 @@ function App() {
             }
           />
 
+          
+
           <Route
             path="/"
             element={
@@ -38,16 +41,10 @@ function App() {
                 <Page />
               </ProtectedRoute>
             }
-          />
+          >
+            <Route path="/boards" element={<BoardsPage/>}/>
 
-          <Route
-            path="/dashboard"
-            element={
-              <ProtectedRoute>
-                <Page />
-              </ProtectedRoute>
-            }
-          />
+          </Route>
         </Routes>
       </BrowserRouter>
     </>
